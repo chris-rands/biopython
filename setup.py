@@ -255,7 +255,13 @@ setup(
     cmdclass={"test": test_biopython},
     packages=PACKAGES,
     ext_modules=EXTENSIONS,
+    # Upon successful install create __config__.py in install dir
+    # See: https://github.com/biopython/biopython/issues/2318
+    #data_files=[("Bio", ["Scripts/__config__.py"]),],
+    package_data={"Bio": ["Scripts/__config__.py"]},
     include_package_data=True,  # done via MANIFEST.in under setuptools
     install_requires=REQUIRES,
     python_requires=">=%i.%i" % MIN_PY_VER,
 )
+
+from numpy.distutils.misc_util import Configuration

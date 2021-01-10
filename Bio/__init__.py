@@ -113,17 +113,16 @@ class BiopythonExperimentalWarning(BiopythonWarning):
     """
 
 
-_parent_dir = os.path.dirname(os.path.dirname(__file__))
-if os.path.exists(os.path.join(_parent_dir, "setup.py")):
+try:
+    import Bio.__config__
+except ImportError:
     warnings.warn(
         "You may be importing Biopython from inside the source tree."
         " This is bad practice and might lead to downstream issues."
         " In particular, you might encounter ImportErrors due to"
         " missing compiled C extensions. We recommend that you"
-        " try running your code from outside the source tree."
-        " If you are outside the source tree then you have a"
-        " setup.py file in an unexpected directory: " + _parent_dir,
+        " try running your code from outside the source tree.",
         BiopythonWarning,
     )
-# See #PR 2007 and issue #1991 for discussion on this warning:
-# https://github.com/biopython/biopython/pull/2007
+# See issue #2318 for the latest disccussion on this warning:
+# https://github.com/biopython/biopython/issues/2318
