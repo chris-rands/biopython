@@ -43,6 +43,9 @@ MANIFEST
 #Ignore potential directory created during install:
 biopython.egg-info
 
+#Ignore __config__.py created during install:
+/__config__.py
+
 #The graphics unit tests produce output files for human inspection
 #(at the time of writing, only PDF and PNG files are created)
 Tests/Graphics/*.pdf
